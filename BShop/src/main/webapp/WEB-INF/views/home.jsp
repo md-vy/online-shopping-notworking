@@ -17,12 +17,19 @@
     <title>Test Site-${title}</title>
     <script>
     window.menu='${title}';
+    
+    window.contextRoot = '${contextRoot}';
     </script>
 
     <!-- Bootstrap Core CSS -->
     <link href="${css}/bootstrap.min.css" rel="stylesheet">
+    
    <!-- Bootstrap Readable Theme -->
   <!--  <link href="${css}/bsthemeone.css" rel="stylesheet"> -->
+  
+     <!-- Bootstrap DataTables -->
+    <link href="${css}/dataTable.bootstrap.css" rel="stylesheet"> 
+    
     <!-- Custom CSS -->
     <link href="${css}/shop-homepage.css" rel="stylesheet">
 
@@ -55,6 +62,12 @@
     <c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
       <%@include file="listProducts.jsp" %>
     </c:if>
+    
+    
+    <!--Load only when user clicks contact  -->
+     <c:if test="${userClickShowProduct==true}">
+      <%@include file="singleProduct.jsp" %>
+    </c:if>
 </div>
    
     <div class="container">
@@ -71,6 +84,13 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="${js}/bootstrap.min.js"></script>
+    
+    <!-- DataTable Plugin -->
+    <script src="${js}/jquery.dataTables.js"></script>   
+    
+        <!-- DataTable Bootstrap Script -->
+    <script src="${js}/dataTables.bootstrap.js"></script>  
+    
     <!-- Self coded -->
     <script src="${js}/myapp.js"></script>
    </div> 

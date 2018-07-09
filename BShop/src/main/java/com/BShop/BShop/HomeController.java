@@ -2,6 +2,8 @@ package com.BShop.BShop;
 
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,23 +12,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.BShop.exception.ProductNotFoundException;
 import com.StudentBack.BShopDAO.CategoryDAO;
 import com.StudentBack.BShopDTO.Category;
 import com.StudentBack.DAO.StudentDAO;
+import com.StudentBack.Product.Product;
+import com.StudentBack.ProductDAO.ProductDAO;
 import com.StudentBack.model.Student;
 
 @Controller
 public class HomeController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	
 	@Autowired
 	StudentDAO studentDAO;
 	@Autowired
 	private CategoryDAO categoryDAO;
+	@Autowired
+	private ProductDAO productDAO;
 	
 	@RequestMapping(value = {"/","/home", "/index", "/mhome"}, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		model.addAttribute("student", new Student());
 		model.addAttribute("title", "Home");
+		
+		
+		logger.info("Inside PageController index method-INFO");
+		logger.debug("Inside PageController index method-DEBUG");
 		
 		//passing the list of categories
 		model.addAttribute("categories", categoryDAO.list());
@@ -83,7 +97,7 @@ public class HomeController {
 			
 	}
 	
-	@RequestMapping(value = {"/show/all/{id}/products"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/show/category/{id}/products"}, method = RequestMethod.GET)
 	public String showCategoryProducts(@PathVariable("id") int id, Model model) {
 		model.addAttribute("student", new Student());
 		
@@ -113,4 +127,26 @@ public class HomeController {
 	studentDAO.addStudent(student);
 			return "home";
 	}
+	
+	// Viewing a single product
+	@RequestMapping(value = "/show/{id}/product")
+	public String showSingleProducts(@PathVariable int id, Model model) throws ProductNotFoundException {
+		
+		Product product = productDAO.get(id);
+		if(product==null)throw new ProductNotFoundException();
+		
+		//update the view count
+		product.setViews(product.getViews()+1);
+		productDAO.update(product);
+		//--------------------------
+		
+		model.addAttribute("title",product.getName());
+		model.addAttribute("product",product); 
+		
+		model.addAttribute("userClickShowProduct",true);
+		
+		
+		return "home";
+	}
+		
 }

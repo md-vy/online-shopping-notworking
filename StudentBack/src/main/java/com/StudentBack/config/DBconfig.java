@@ -45,7 +45,7 @@ private Properties getHibernateProp() {
 	prop.put("hibernate.dialect", DBdialect);
 	
 	//optional
-	prop.put("hibernate.hbm2ddl.auto", "create"); //create,update, create-drop,validate. This property will tell hibernate to create table automatically
+	//prop.put("hibernate.hbm2ddl.auto", "create"); //create,update, create-drop,validate. This property will tell hibernate to create table automatically
 	prop.put("hibernate.show_sql", "true");
 	prop.put("hibernate.format_sql", "true");
 	//optional
