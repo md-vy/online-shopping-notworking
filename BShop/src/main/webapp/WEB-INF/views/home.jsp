@@ -3,6 +3,7 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
 <spring:url value="/resources/css" var="css"/>
 <spring:url value="/resources/js" var="js"/>
+<spring:url value="/resources/images" var="images"/>
 <%@ page session="false" %>
 <html lang="en">
 
@@ -47,18 +48,24 @@
     <!-- Page Content -->
     
     <div class="content">
+    
+    
     <c:if test="${userClickHome==true }">
       <%@include file="mhome.jsp" %>
     </c:if>
+    
     <c:if test="${userClickRegistration==true }">
       <%@include file="registration.jsp" %>
     </c:if>
+    
       <c:if test="${userClickAbout==true }">
       <%@include file="about.jsp" %>
     </c:if>
+    
       <c:if test="${userClickContact==true }">
       <%@include file="contact.jsp" %>
     </c:if>
+    
     <c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
       <%@include file="listProducts.jsp" %>
     </c:if>
@@ -67,6 +74,11 @@
     <!--Load only when user clicks contact  -->
      <c:if test="${userClickShowProduct==true}">
       <%@include file="singleProduct.jsp" %>
+    </c:if>
+    
+    <!--Load only when user manage products  -->
+     <c:if test="${userClickManageProducts==true}">
+      <%@include file="manageProducts.jsp" %>
     </c:if>
 </div>
    
@@ -81,6 +93,10 @@
 
     <!-- jQuery -->
     <script src="${js}/jquery.js"></script>
+     <!-- jQuery val -->
+    <script src="${js}/jquery.validate.js"></script>
+     <!-- jQuery val min -->
+   <!--  <script src="${js}/jquery.validate.min.js"></script> -->
 
     <!-- Bootstrap Core JavaScript -->
     <script src="${js}/bootstrap.min.js"></script>
@@ -90,6 +106,11 @@
     
         <!-- DataTable Bootstrap Script -->
     <script src="${js}/dataTables.bootstrap.js"></script>  
+    
+     <!-- BootBox -->
+    <script src="${js}/bootbox.min.js"></script>  
+    
+    
     
     <!-- Self coded -->
     <script src="${js}/myapp.js"></script>

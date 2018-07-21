@@ -16,8 +16,11 @@
                     <li id="about">
                         <a href="${contextRoot}/about">About</a>
                     </li>
-                  <li id="ListProducts">
+                  <li id="listProducts">
                         <a href="${contextRoot}/show/all/products">View Product</a>
+                    </li>
+                        <li id="manageProducts">
+                        <a href="${contextRoot}/manage/products">Manage Product</a>
                     </li>
                     <li id="contact">
                         <a href="${contextRoot}/contact">Contact</a>
@@ -26,6 +29,21 @@
                         <a href="${contextRoot}/register">Register</a>
                     </li>
                 </ul>
+                
+                <ul class= "nav navbar-nav navbar-right">
+                
+                   </li>
+                        <li id="register">
+                        <a href="${contextRoot}/register">Sign Up</a>
+                    </li>
+                   </li>
+                        <li id="login">
+                        <a href="${contextRoot}/login">Login</a>
+                    </li>
+                
+                </ul>
+                
+                
             </div>
             <!-- /.navbar-collapse -->
         </div>

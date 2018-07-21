@@ -21,6 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- id must  be multipartResolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+	
 	<context:component-scan base-package="com.BShop.BShop" />
 	<context:component-scan base-package="com.StudentBack" />
 	<context:component-scan base-package="com.StudentBack.BShopDAOImpl" />

@@ -1,0 +1,64 @@
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Enter Product Name:</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" placeholder="Product Name" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Enter Brand Name:</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" placeholder="Brand Name" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Product Description:</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Enter Unit Price:</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" placeholder="Unit Price in Rs." class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Quantity Available:</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" placeholder="Quantity Available" class="form-control input-md" type="text">
+  <span class="help-block">help</span>  
+  </div>
+</div>
+
+<!-- Button Drop Down -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="buttondropdown">Select Category:</label>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input id="buttondropdown" name="buttondropdown" class="form-control" placeholder="Select Category" type="text">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="#">Category one</a></li>
+          <li><a href="#">Category two</a></li>
+          <li><a href="#">Category three</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
