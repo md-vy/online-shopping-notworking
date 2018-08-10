@@ -2,15 +2,22 @@ package com.BShop.BShop;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.BShop.exception.ProductNotFoundException;
 import com.StudentBack.BShopDAO.CategoryDAO;
@@ -148,5 +155,57 @@ public class HomeController {
 		
 		return "home";
 	}
+	/* Having similar mapping to our flow id
+	@RequestMapping(value = {"/register"}, method = RequestMethod.GET)
+	public String register(Model model) {
+		model.addAttribute("student", new Student());
+		model.addAttribute("title", "All Products");*/
+	
+	/*Login*/
+	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+	public String login(@RequestParam(name= "error", required=false)String error,
+			@RequestParam(name= "logout", required=false)String logout,Model model) {
 		
+		if(error!=null) {
+			model.addAttribute("message", "Invalid Username and Password");
+		}
+		
+		if(logout!=null) {
+			model.addAttribute("logout", "User has successfully logged-out!");
+		}
+		model.addAttribute("title", "Login");
+		return "login";
+	}
+	
+	@RequestMapping(value = "/access-denied", method = RequestMethod.GET)
+	public String accessDenied( Model model) {
+	model.addAttribute("title", "403 - Access Denied");
+	model.addAttribute("errorTitle", "Access Denied");
+	model.addAttribute("errorDescription", "You are not authorized to view this page!");
+			return "error";
+	}
+	
+	//Logout
+	@RequestMapping(value = "/perform-logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
+	model.addAttribute("title", "403 - Access Denied");
+	model.addAttribute("errorTitle", "Access Denied");
+	model.addAttribute("errorDescription", "You are not authorized to view this page!");
+	
+	//fetch the authentication
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	
+	if(auth!=null) {
+		
+		new SecurityContextLogoutHandler().logout(request, response, auth);
+		
+	}
+
+	    
+	
+			return "redirect:/login?logout";
+	}
+	
+	
+	
 }
